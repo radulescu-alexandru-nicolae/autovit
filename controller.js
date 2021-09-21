@@ -124,23 +124,27 @@ export default class Controller{
            let masini=[];
            if(marca!=='marca'){
              this.filtrareFirma(marca).forEach(e=>e.afisare());
-            this.masini=this.filtrareFirma(marca);
-           this.home.innerHTML+=this.toCardsEx(this.masini);
-            }else if(culoare!=='color'){
+             this.filtrareFirma(marca).forEach(e=>masini.push(e));
+            
+            
+            } if(culoare!=='color'){
+               console.log('e');
               this.filtrareCuloare(culoare).forEach(e=>e.afisare());
-              this.masini=this.filtrareCuloare(culoare);
-              this.home.innerHTML+=this.toCardsEx(this.masini);
+              this.filtrareCuloare(culoare).forEach(e=>masini.push(e));
+          
 
-
-           }else if(min_an!=='de la'&&max_an!=='pana la'){
+           } if(min_an!=='de la'&&max_an!=='pana la'){
+            console.log('a');
               this.filtrareAn(min_an,max_an).forEach(e=>e.afisare());
-              this.masini=this.filtrareAn(min_an,max_an);
-              this.home.innerHTML+=this.toCardsEx(this.masini);
+              this.filtrareAn(min_an,max_an).forEach(e=>masini.push(e));
+              
            } 
            if(km_min!=='de la'&&km_max!=='pana la'){
+            console.log('eb');
             this.filtrareKm(km_min,km_max).forEach(e=>e.afisare());
+            this.filtrareKm(km_min,km_max).forEach(e=>masini.push(e));
          }
-
+         console.log(masini);
         }
 
      }
