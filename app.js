@@ -11,4 +11,4 @@ let c= new Controller();
 
 
 c.print();
-c.setHome();
+// c.setHome();

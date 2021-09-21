@@ -50,6 +50,15 @@ export default class Controller{
          return text;
       }
 
+      toCardsEx(lista){
+    
+
+         let text=``;
+         for(let i=0;i<lista.length;i++){
+            text+=lista[i].tocard();
+         }
+         return text;
+      }
 
   
      setHome=()=>{
@@ -69,8 +78,7 @@ export default class Controller{
       let masini =[];  
          this.list.forEach(e=>{
             if(e.firma===denumire){
-            console.log(e);
-
+               masini.push(e);
             }
          })   
       return masini;
@@ -103,6 +111,7 @@ export default class Controller{
         })
         return masini;
      }
+     
 
      handleFilter=(e)=>{
         return e=>{
@@ -112,12 +121,21 @@ export default class Controller{
            let max_an=this.meniu.querySelector('.second-an-fabricatie').value.toLowerCase();
            let km_min=this.meniu.querySelector('.min-kilometraj').value.toLowerCase();
            let km_max=this.meniu.querySelector('.max-kilometraj').value.toLowerCase();
+           let masini=[];
            if(marca!=='marca'){
              this.filtrareFirma(marca).forEach(e=>e.afisare());
-           }else if(culoare!=='color'){
+            this.masini=this.filtrareFirma(marca);
+           this.home.innerHTML+=this.toCardsEx(this.masini);
+            }else if(culoare!=='color'){
               this.filtrareCuloare(culoare).forEach(e=>e.afisare());
+              this.masini=this.filtrareCuloare(culoare);
+              this.home.innerHTML+=this.toCardsEx(this.masini);
+
+
            }else if(min_an!=='de la'&&max_an!=='pana la'){
               this.filtrareAn(min_an,max_an).forEach(e=>e.afisare());
+              this.masini=this.filtrareAn(min_an,max_an);
+              this.home.innerHTML+=this.toCardsEx(this.masini);
            } 
            if(km_min!=='de la'&&km_max!=='pana la'){
             this.filtrareKm(km_min,km_max).forEach(e=>e.afisare());
@@ -127,9 +145,6 @@ export default class Controller{
 
      }
 
-
-
-     
 }
 
 
